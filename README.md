@@ -3,14 +3,16 @@ This work was done at IRSOL, MTU which introduces heuristics to coordinate multi
 2) path planning (finding the best path for the given sequence), 
 3) scheduling (managing arrival and departure times to avoid collisions).
 
-Solving these simultaneously for large problem size is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges. In this approach, tasks are first distributed among the vehicles using a primal-dual-based heuristic that iteratively assigns tasks and generates a minimum spanning forest. The LKH algorithm is then applied to create cost-efficient paths for each vehicle. Assuming tethers remain taut and straight during movement between consecutive tasks, the paths are checked for potential tether entanglement or vehicle collisions. If entanglement is detected, the heuristic either reallocates tasks or adjusts vehicle schedules to avoid it. This process continues until all vehicle paths are entanglement-free. The video demonstrates cable entanglement detection with 3 T-AUVs and 50 tasks, showing a potential entanglement between the red and blue cables at the end.
+Solving these simultaneously for large problem size is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges. In this approach, tasks are first distributed among the vehicles using a primal-dual-based heuristic that iteratively assigns tasks and generates a minimum spanning forest. The LKH algorithm is then applied to create cost-efficient paths for each vehicle. Assuming tethers remain taut and straight during movement between consecutive tasks, the paths are checked for potential tether entanglement or vehicle collisions. If entanglement is detected, the heuristic either reallocates tasks or adjusts vehicle schedules to avoid it. This process continues until all vehicle paths are entanglement-free. The video demonstrates cable entanglement detection with 4 T-AUVs (red, blue, green, violet) and 50 tasks, showing a potential entanglement between the red and blue cables at the end.
 
 https://github.com/user-attachments/assets/a806277b-82d7-483d-94cc-1bd5ca10d77a
 
-After 
-
+After the reallocations and rescheduling, the resulting entanglement-free paths are shown below. These adjusted paths ensure that no tether entanglement or vehicle collisions occur, allowing the T-AUVs to perform their tasks efficiently and safely. You can see that the tasks have been reassigned from blue vehicle to other vehicles. You can also notice that the red robot yields for blue robot and waits for some time at task "b5" to avoid the entaglement. 
 
 https://github.com/user-attachments/assets/e9ac806b-8fa7-4cc4-86cf-cd4251871e94
+
+
+
 
 Building on that, we propose an iterative heuristic that allocates tasks while proactively preventing entanglements. Simulations with varying problem sizes show the algorithm's effectiveness and real-time potential, offering reliable solutions efficiently. This research advances underwater robotics with practical applications for T-AUV systems.
 
