@@ -1,9 +1,9 @@
-This work introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs), which can operate longer underwater due to continuous power and communication via the tether. The main challenge is preventing tether entanglement and collisions. The coordination problem involves three sub-problems: 
-1) task allocation (assigning tasks and determining the optimal sequence), 
-2) path planning (finding the best path for the given sequence), and
+This work was done at IRSOL, MTU which introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs), which can operate longer underwater due to continuous power and communication via the tether. The main challenge is preventing tether entanglement and collisions. The coordination problem involves three sub-problems:
+1) task allocation (assigning tasks and determining the optimal sequence),
+2) path planning (finding the best path for the given sequence), 
 3) scheduling (managing arrival and departure times to avoid collisions).
 
-Solving these 3 sub problems simultaneously for large problems is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges.
+Solving these simultaneously for large problem size is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges. In this approach, tasks are first distributed among the vehicles using a primal-dual-based heuristic that iteratively assigns tasks and generates a minimum spanning forest. The LKH algorithm is then applied to create cost-efficient paths for each vehicle. Assuming tethers remain taut and straight during movement between consecutive tasks, the paths are checked for potential tether entanglement or vehicle collisions. If entanglement is detected, the heuristic either reallocates tasks or adjusts vehicle schedules to avoid it. This process continues until all vehicle paths are entanglement-free. The video demonstrates cable entanglement detection with 3 T-AUVs and 50 tasks, showing a potential entanglement between the red and blue cables at the end.
 
 https://github.com/user-attachments/assets/a806277b-82d7-483d-94cc-1bd5ca10d77a
 
