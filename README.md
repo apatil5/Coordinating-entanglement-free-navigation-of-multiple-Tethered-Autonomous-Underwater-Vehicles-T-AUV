@@ -1,9 +1,15 @@
-This work was done at IRSOL, MTU which introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs), which can operate longer underwater due to continuous power and communication via the tether. The main challenge is preventing tether entanglement and collisions. The coordination problem involves three sub-problems:
-1) task allocation (assigning tasks and determining the optimal sequence),
-2) path planning (finding the best path for the given sequence), 
-3) scheduling (managing arrival and departure times to avoid collisions).
+This work was done at IRSOL, Michigan Technological University which introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs), which can operate longer underwater due to continuous power and communication via the tether. The main challenge is preventing tether entanglement and collisions. The coordination problem involves three sub-problems:
+1) task allocation (assigning tasks and determining the optimal sequence)
+2) path planning (finding the best path for the given sequence)
+3) scheduling (managing arrival and departure times to avoid collisions)
 
-Solving these simultaneously for large problem size is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges. In this approach, tasks are first distributed among the vehicles using a primal-dual-based heuristic that iteratively assigns tasks and generates a minimum spanning forest. The LKH algorithm is then applied to create cost-efficient paths for each vehicle. Assuming tethers remain taut and straight during movement between consecutive tasks, the paths are checked for potential tether entanglement or vehicle collisions. If entanglement is detected, the heuristic either reallocates tasks or adjusts vehicle schedules to avoid it. This process continues until all vehicle paths are entanglement-free. The video demonstrates cable entanglement detection with 4 T-AUVs (red, blue, green, violet) and 50 tasks, showing a potential entanglement between the red and blue cables at the end.
+Solving these simultaneously for large problem size is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges. To tackle this challenge, we considered the following min-max problem :
+Given a set of T-AUVs with distinct depots and a set of tasks, find a path and schedule for each vehicle such that
+1) each task must be handled by one of the vehicles
+2) tethers are maintained untangled during the operation
+3) the maximum travel time among all the vehicles is minimized
+
+In this approach, tasks are first distributed among the vehicles using a primal-dual-based heuristic that iteratively assigns tasks and generates a minimum spanning forest. The LKH algorithm is then applied to create cost-efficient paths for each vehicle. Assuming tethers remain taut and straight during movement between consecutive tasks, the paths are checked for potential tether entanglement or vehicle collisions. If entanglement is detected, the heuristic either reallocates tasks or adjusts vehicle schedules to avoid it. This process continues until all vehicle paths are entanglement-free. The video demonstrates cable entanglement detection with 4 T-AUVs (red, blue, green, violet) and 50 tasks, showing a potential entanglement between the red and blue cables at the end.
 
 https://github.com/user-attachments/assets/a806277b-82d7-483d-94cc-1bd5ca10d77a
 
@@ -11,24 +17,26 @@ After the reallocations and rescheduling, the resulting entanglement-free paths 
 
 https://github.com/user-attachments/assets/e9ac806b-8fa7-4cc4-86cf-cd4251871e94
 
+For a problem size of 3 T-AUVs and 50 tasks, the average and maximum computation times were 2.7 and 4.5 seconds, respectively. For larger problems with 10 T-AUVs and 100 tasks, the average and maximum times were 11.7 and 21.8 seconds. These computations were performed on an i7-7800X CPU (3.5 GHz) with 64 GB RAM, demonstrating the heuristic's computation efficiency and capability  of real-time coordination.
 
+The initial multi-layer approach solved the problem by first allocating tasks and generating paths, then resolving entanglements. However, since it didn’t consider all constraints simultaneously, solution quality sometimes degraded during re-routing. To address this, a novel heuristic was developed with:
 
+Modified Formulation:
+1. A modified mixed integer linear program.
+2. Entanglement constraints integrated into route planning.
 
-Building on that, we propose an iterative heuristic that allocates tasks while proactively preventing entanglements. Simulations with varying problem sizes show the algorithm's effectiveness and real-time potential, offering reliable solutions efficiently. This research advances underwater robotics with practical applications for T-AUV systems.
+New Heuristic:
+1. Considers all constraints simultaneously.
+2. Significantly improves solution quality.
+3. Reduces computational costs compared to the multi-layer method.
 
+The new heuristic is a local search-based approach that begins with a greedy task allocation to vehicles, ensuring no entanglements. It then reallocates tasks to balance the workload while maintaining entanglement-free operations. This approach optimizes task distribution and vehicle coordination. Further details are currently under embargo, as the paper is under peer review.
 
-
-
-https://github.com/user-attachments/assets/f438e7ef-3b3d-4325-9a35-09347dc0d833
-
-
-new primal dual
+The video below shows entantanglement free paths for 3 T-AUVs and 100 tasks generated by the Primal Dual based multi layer heuristic. It can be noticed that the red robot has to wait for a long time to avoid entanglement. 
 
 https://github.com/user-attachments/assets/ce2599c9-0058-4f60-8a23-935b1d66636e
 
 Novel approach
-
-
 
 https://github.com/user-attachments/assets/50cfaabe-9b02-4c3a-85f5-cfd0beedd864
 
