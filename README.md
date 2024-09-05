@@ -1,9 +1,10 @@
-This work introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs). Tethered AUVs can operate longer underwater due to continuous power and communication via the tether. However, the challenge is to cordinate the operation avoiding tether entanglement or collison. Cordination problem of T-AUVs is comprised of 3 sub problems:
-Task allocation: assigning the tasks to the vehicles and finding an optimal sequence of visit
-Path planning: finding an optimal path with a given sequence of tasks
-Scheduling: determining arrival and departure times on the given routes to avoid collision
+This work introduces heuristics to coordinate multiple Tethered-Autonomous Underwater Vehicles (T-AUVs), which can operate longer underwater due to continuous power and communication via the tether. The main challenge is preventing tether entanglement and collisions. The coordination problem involves three sub-problems: 
+1) task allocation (assigning tasks and determining the optimal sequence), 
+2) path planning (finding the best path for the given sequence), and
+3) scheduling (managing arrival and departure times to avoid collisions).
 
-Soving the three probelm simultatneously is a complex and computationally challengeing. To solve this problem our initial research developed a Primal Dual based multiple layer heuristic for task assignment, path planning and reordering to address the entanglement issue. 
+Solving these 3 sub problems simultaneously for large problems is complex and computationally demanding. Our initial research developed a primal-dual, multi-layer heuristic to address these challenges.
+
 https://github.com/user-attachments/assets/a806277b-82d7-483d-94cc-1bd5ca10d77a
 
 After 
